@@ -53,8 +53,29 @@ const userService = new UserService();
         }
     }
 //}
-
+const isAuthenticated = async (req, res) => {
+    try {
+        const token = req.headers['x-access-token'];
+        //console.log('hello',token);
+        const response = await userService.isAuthenticated(token);
+        return res.status(200).json({
+            success: true,
+            message: 'Successfully Authenticated ',
+            data: response,
+            err: {}
+        });
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Something went wrong in controller layer while authenticating ',
+            data: {},
+            err: error
+        });
+    }
+}
 module.exports = {
     create ,
-    signIn
+    signIn ,
+    isAuthenticated
 }

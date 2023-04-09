@@ -21,4 +21,5 @@ const {authReqValidation} = require('../../middlewares/index')
  );
 // router.post('/signin',AuthReqValidation,UserController.signIn);
 
+router.get('/isAuthenticated',UserController.isAuthenticated);
  module.exports = router;

@@ -17,7 +17,7 @@ class UserService {
             throw (error);
         }
     }
-    
+    //think about the signin using fake email that doesnt exist or is of someoneelse ,so we need to think about the logic to handle that as well
     async signIn(email,inputPassword){
         try {
             const user = await this.userRepository.getByEmail(email);
@@ -53,6 +53,25 @@ class UserService {
             return response;
         } catch (error) {
             console.log("Something went wrong and cannot verify the token");
+            throw (error);
+        }
+    }
+    async isAuthenticated(token) {
+        try {
+            const response = this.verifyToken(token);
+            if(!response)
+            {
+                throw {error: 'invalid token'}
+            }
+            const user = await this.userRepository.getById(response.id);
+            console.log(user);
+            if(!user)
+            {
+                throw {error: 'user not found with corresponding token'};
+            }
+            return user.id;
+        } catch (error) {
+            console.log('token didnt match');
             throw (error);
         }
     }
