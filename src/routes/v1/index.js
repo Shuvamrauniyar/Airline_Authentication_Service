@@ -2,7 +2,7 @@
 
  const router = express.Router();
 const UserController = require('../../controllers/user-controller');
-const {authReqValidation} = require('../../middlewares/index')
+const {authReqValidation} = require('../../middlewares/index');
 //  const userController = n
 
  router.post('/signup',
@@ -22,4 +22,9 @@ const {authReqValidation} = require('../../middlewares/index')
 // router.post('/signin',AuthReqValidation,UserController.signIn);
 
 router.get('/isAuthenticated',UserController.isAuthenticated);
+
+router.get('/isAdmin',
+authReqValidation.isAdminReqValidation,
+UserController.isAdmin);
+
  module.exports = router;

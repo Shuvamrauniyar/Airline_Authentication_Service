@@ -73,9 +73,31 @@ const isAuthenticated = async (req, res) => {
             err: error
         });
     }
+
+
+}
+const isAdmin = async(req,res) => {
+    try {
+        const response = await userService.isAdmin(req.body.id);
+        console.log(response);
+        return res.status(200).json({
+            success:true,
+            message:' the role of user as admin is successfully checked',
+            err: {},//i mistakely threw error here as err:error
+            data: response
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Something went wrong in controller layer while checking the role ',
+            data: {},
+            err: error
+        });
+    }
 }
 module.exports = {
     create ,
     signIn ,
-    isAuthenticated
+    isAuthenticated,
+    isAdmin
 }

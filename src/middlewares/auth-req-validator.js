@@ -9,6 +9,19 @@ const authvalidation = (req, res, next) => {
 }
     next();
 }
+
+const isAdminReqValidation = (req, res, next) => {
+    if(!req.body.id)
+    return res.status(400).json({
+        success: false,
+        err: 'id is missing in the request',
+        message : 'incorrect request format',
+        data: {}
+    });
+
+    next();
+}
 module.exports = {
-    authvalidation
+    authvalidation,
+    isAdminReqValidation
 }

@@ -22,10 +22,10 @@ const {User,Role} = require('./models/index');
         //     db.sequelize.sync({alter:true});
         // }
 
-        const u1 = await User.findByPk(5);
-        const r1 = await Role.findByPk(1);
-        // u1.addRoles(r1);//this and below works same
-        r1.addUsers(u1);
+         //const u1 = await User.findByPk(8);
+         //const r1 = await Role.findByPk(2);
+         //u1.addRoles(r1);//this and below works same
+        //r1.addUsers(u1);
         // console.log(u1,r1);
 
     })
