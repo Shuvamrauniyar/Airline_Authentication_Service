@@ -34,7 +34,7 @@ class UserService {
             return newToken;
         } catch (error) {
             console.log("Something went wrong in while signing in service layer");
-            throw (error);
+            throw {error : "incorrect password"};
         }
     }
     createToken(user) {
